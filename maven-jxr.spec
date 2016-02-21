@@ -34,7 +34,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        2.3
-Release:        11.10%{?dist}
+Release:        11.11%{?dist}
 Epoch:          0
 Summary:        Source cross referencing tool
 # BSD: maven-jxr/src/main/java/org/apache/maven/jxr/JavaCodeTransform.java
@@ -50,17 +50,17 @@ BuildArch:      noarch
 BuildRequires:  %{?scl_prefix_java_common}maven-local
 BuildRequires:  %{?scl_prefix_java_common}mvn(commons-io:commons-io)
 BuildRequires:  %{?scl_prefix_java_common}mvn(commons-lang:commons-lang)
-BuildRequires:  maven30-mvn(org.apache.maven.doxia:doxia-sink-api)
-BuildRequires:  maven30-mvn(org.apache.maven.doxia:doxia-site-renderer)
-BuildRequires:  maven30-mvn(org.apache.maven.reporting:maven-reporting-api)
-BuildRequires:  maven30-mvn(org.apache.maven.reporting:maven-reporting-impl)
-BuildRequires:  maven30-mvn(org.apache.maven.wagon:wagon-provider-api)
-BuildRequires:  maven30-mvn(org.apache.maven:maven-model)
-BuildRequires:  maven30-mvn(org.apache.maven:maven-parent:pom:)
-BuildRequires:  maven30-mvn(org.apache.maven:maven-plugin-api)
-BuildRequires:  maven30-mvn(org.apache.maven:maven-project)
-BuildRequires:  maven30-mvn(org.apache.velocity:velocity)
-BuildRequires:  maven30-mvn(org.codehaus.plexus:plexus-utils)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.doxia:doxia-sink-api)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.doxia:doxia-site-renderer)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.reporting:maven-reporting-api)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.reporting:maven-reporting-impl)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.wagon:wagon-provider-api)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven:maven-model)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven:maven-parent:pom:)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven:maven-plugin-api)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven:maven-project)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.velocity:velocity)
+BuildRequires:  %{?scl_prefix}mvn(org.codehaus.plexus:plexus-utils)
 BuildRequires:  %{?scl_prefix_java_common}mvn(oro:oro)
 BuildRequires:  %{?scl_prefix_java_common}mvn(xalan:xalan)
 BuildRequires:  %{?scl_prefix_java_common}mvn(xml-apis:xml-apis)
@@ -83,7 +83,7 @@ Maven plugin for JXR.
 
 %prep
 %setup -q -n jxr-%{version}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 
 cp %{SOURCE1} .
@@ -102,7 +102,7 @@ cp %{SOURCE1} .
 %{?scl:EOF}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 # The test failures seem to have something to do with:
 # http://jira.codehaus.org/browse/MCHANGES-88
@@ -113,7 +113,7 @@ set -e -x
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -129,6 +129,9 @@ set -e -x
 %files -n %{?scl_prefix}maven-plugin-jxr -f .mfiles-maven-plugin-jxr
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 0:2.3-11.11
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 0:2.3-11.10
 - maven33 rebuild
 
