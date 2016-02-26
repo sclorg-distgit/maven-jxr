@@ -34,7 +34,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        2.3
-Release:        11.11%{?dist}
+Release:        11.12%{?dist}
 Epoch:          0
 Summary:        Source cross referencing tool
 # BSD: maven-jxr/src/main/java/org/apache/maven/jxr/JavaCodeTransform.java
@@ -47,7 +47,7 @@ Source1:        LICENSE-BSD
 
 BuildArch:      noarch
 
-BuildRequires:  %{?scl_prefix_java_common}maven-local
+BuildRequires:  %{?scl_prefix}maven-local
 BuildRequires:  %{?scl_prefix_java_common}mvn(commons-io:commons-io)
 BuildRequires:  %{?scl_prefix_java_common}mvn(commons-lang:commons-lang)
 BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.doxia:doxia-sink-api)
@@ -129,6 +129,9 @@ set -e -x
 %files -n %{?scl_prefix}maven-plugin-jxr -f .mfiles-maven-plugin-jxr
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 0:2.3-11.12
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 0:2.3-11.11
 - maven33 rebuild #2
 
